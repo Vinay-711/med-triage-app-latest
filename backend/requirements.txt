@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+python-multipart
+torch
+torchvision
+numpy
+opencv-python
+Pillow
+pydantic
+python-dotenv
+google-generativeai
+transformers
+scikit-learn
+pandas
+matplotlib
