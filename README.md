@@ -2,6 +2,8 @@
 
 **MedTriage AI** is a state-of-the-art medical diagnostic assistant designed to streamline patient triage and specific condition analysis. Built with a modern, glassmorphic UI and powered by advanced AI simulation logic, it demonstrates the future of healthcare software.
 
+🌐 **Live Demo:** [https://vinay-711.github.io/med-triage-app-latest/](https://vinay-711.github.io/med-triage-app-latest/)
+
 ![MedTriage Banner](https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1600&q=80) 
 *(Note: Placeholder banner)*
 
