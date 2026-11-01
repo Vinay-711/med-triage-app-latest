@@ -1,122 +1,40 @@
-# MedTriage AI
+# MedTriage AI — Triage Workflow Demonstration
 
-**MedTriage AI** is a state-of-the-art medical diagnostic assistant designed to streamline patient triage and specific condition analysis. Built with a modern, glassmorphic UI and powered by advanced AI simulation logic, it demonstrates the future of healthcare software.
+A React/TypeScript interface and Python API exploring radiology and dermatology triage workflows. The project includes simulation paths; generated confidence values and visual overlays must not be interpreted as clinically validated findings.
 
-🌐 **Live Demo:** [https://vinay-711.github.io/med-triage-app-latest/](https://vinay-711.github.io/med-triage-app-latest/)
+[Browser demonstration](https://vinay-711.github.io/med-triage-app-latest/)
 
-![MedTriage Banner](https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1600&q=80) 
-*(Note: Placeholder banner)*
+## Run the frontend
 
-## 🚀 Key Features
-
-*   **Intelligent Triage Queue**: Automatically prioritizes patients based on symptom urgency and AI preliminary analysis.
-*   **Multi-Modality Support**: Switch seamlessly between **Radiology** (Chest X-Rays) and **Dermatology** (Skin Lesions) modes.
-*   **AI-Powered Analysis (Simulation Mode)**:
-    *   **Class Detection**: Identifies conditions like Pneumonia, Melanoma, No Finding, etc using simulated high-fidelity responses.
-    *   **Uncertainty Estimation**: Provides confidence scores and flags high-uncertainty cases for human review.
-    *   **Visual Heatmaps**: Displays AI attention maps overlaid on scans to show regions of interest.
-*   **Federated Learning Ready**: Includes endpoints for receiving decentralized privacy-preserving model updates.
-*   **Side-by-Side Comparison**: Dedicated mode to compare "Before" and "After" images with difference highlighting.
-*   **Automated Reporting**: Generates structured medical reports (Findings, Impression, Recommendations) instantly.
-*   **Interactive Assistant**: Built-in chat interface to query specific details about the active case.
-*   **Quality Checks**: Validates image quality (brightness, rotation, metal artifacts) before analysis.
-
-## 🛠️ Technology Stack
-
-**Frontend**
-*   **React 18** (TypeScript, Vite)
-*   **Tailwind CSS** (Styling & Design System)
-*   **Lucide React** (Iconography)
-
-**Backend**
-*   **Python 3.10+**
-*   **FastAPI** (High-performance API framework)
-*   **PyTorch / TorchVision** (Deep Learning Logic)
-*   **OpenCV & Pillow** (Image Processing)
-*   **Google Generative AI** (LLM Integration ready)
-*   **Federated Learning** (Simulated Architecture)
-
----
-
-## 🏁 Getting Started
-
-Follow these steps to set up the project locally.
-
-### Prerequisites
-*   Node.js (v18+)
-*   Python (v3.10+)
-
-### 1. Backend Setup
-
-The backend handles AI inference (simulated for reliability) and report generation.
-
-```bash
-# Navigate to the backend directory
-cd backend
-
-# Create a virtual environment (optional but recommended)
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-pip install python-multipart uvicorn fastapi torch torchvision opencv-python
-
-# Run the server
-python main.py
-```
-*The backend runs on `http://localhost:8000` and starts in Simulation Mode by default.*
-
-### 2. Frontend Setup
-
-The frontend is a modern React application.
-
-```bash
-# Navigate to the frontend directory
+```sh
 cd frontend
-
-# Install dependencies
-npm install
-
-# Start the development server
+npm ci
 npm run dev
 ```
-*The application will open at `http://localhost:5173`.*
 
----
+Use the address printed by Vite. The deployed static page is a frontend demonstration and cannot host the Python inference service.
 
-## 📖 Usage Guide
+## Run the backend separately
 
-### 1. Dashboard & Worklist
-*   View the **Patient Queue** on the left.
-*   Click a patient to load their details (simulated) or use the **Upload Area** to analyze a new file.
+```sh
+cd backend
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+python -m uvicorn main:app --reload --host 127.0.0.1 --port 8000
+```
 
-### 2. Running Analysis
-*   Upload an image (X-Ray or Skin Photo).
-*   The system first checks **Image Quality**.
-*   Click **Analyze Scan** to generate findings.
-*   View the results in the **Findings** tab (Diagnosis, Confidence, Heatmap).
-*   Switch to the **Report** tab to see the generated text report.
+The dependency list includes ML frameworks; confirm compatible Python/platform wheels before installation. Inspect [backend/main.py](backend/main.py) for model-loading, provider configuration and simulation behavior. Training scripts are separate experiments and do not establish model validity.
 
-### 3. Comparison Mode
-*   Toggle the **Compare** mode in the header.
-*   Upload a "Baseline" image and a "Current" image.
-*   Click **Run Comparison** to see a difference analysis and improvement score.
+## Source map
 
----
+| File | Role |
+| --- | --- |
+| [frontend/src/TriageApp.tsx](frontend/src/TriageApp.tsx) | Triage interface and client-side interactions |
+| [backend/main.py](backend/main.py) | FastAPI application and analysis behavior |
+| [backend/train.py](backend/train.py) | Training experiment |
+| [backend/kaggle_training_script.py](backend/kaggle_training_script.py) | Dataset/training experiment |
 
-## 🤝 Contributing
+## Verification and limitations
 
-This project is a demonstration of advanced agentic coding capabilities.
-
-1.  Fork the repository
-2.  Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3.  Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4.  Push to the branch (`git push origin feature/AmazingFeature`)
-5.  Open a Pull Request
-
----
-
-## 📄 License
-
-Distributed under the MIT License. See `LICENSE` for more information.
+Run `npm run build` from `frontend` to check TypeScript and the production bundle. No clinical accuracy or automated test result is claimed here. Review simulation labels, invalid uploads, empty queues and API-offline behavior manually. Use synthetic examples, keep patient images out of Git, and require qualified human review for any health interpretation.
